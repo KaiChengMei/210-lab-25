@@ -66,6 +66,30 @@ int mSortS(set<string>& s) {
     return -1 ;
 }
 
+int mInsertV(vector<string>& v, const string& value) {
+    auto start = high_resolution_clock::now();
+    v.insert(v.begin()+ v.size()/2, value);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
+
+int mInsertL(list<string>& l, const string& value) {
+    auto start = high_resolution_clock::now();
+    auto it = next(l.begin(), l.size() / 2);
+    l.insert(it, value);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
+
+int mInsertS(set<string>& s, const string& value) {
+    auto start = high_resolution_clock::now();
+    s.insert(value);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
 
 int main() {
     string fn = "codes.txt";
@@ -81,11 +105,17 @@ int main() {
     int readListTime = mReadL(l, data);
     int readSetTime = mReadS(s, data);
     cout << " Read " << readVectorTime << "      " << readListTime << "      " << readSetTime << endl;
+    
     int sortVectorTime = mSortV(v);
     int sortListTime = mSortL(l);
     int sortSetTime = mSortS(s);
     cout << " Read " << sortVectorTime << "      " << sortListTime << "      " << sortSetTime << endl;
-
+    
+    string test = "HelloWorld";
+    int insertVectorTime = mInsertV(v,test);
+    int insertListTime = mInsertL(l,test);
+    int insertSetTime = mInsertS(s,test);
+    cout << " Read " << insertVectorTime << "      " << insertListTime << "      " << insertSetTime << endl;
     
 
 
