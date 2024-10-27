@@ -91,6 +91,35 @@ int mInsertS(set<string>& s, const string& value) {
     return duration.count();
 }
 
+int mDeleteV(vector<string>& v) {
+    auto start = high_resolution_clock::now();
+    v.erase(v.begin() + v.size() / 2);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
+
+int mDeleteL(list<string>& l) {
+    auto start = high_resolution_clock::now();
+    auto it = next(l.begin(), l.size() / 2);
+    l.erase(it);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
+
+int mDeleteS(set<string>& s, const string& value) {
+    auto start = high_resolution_clock::now();
+    s.erase(value);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
+
+
+
+
+
 int main() {
     string fn = "codes.txt";
     // read data 
@@ -99,25 +128,29 @@ int main() {
     list<string> l;
     set<string> s;
 
-
+    cout << " Operation  Vector  List    Set " << endl ;
 
     int readVectorTime = mReadV(v, data);
     int readListTime = mReadL(l, data);
     int readSetTime = mReadS(s, data);
-    cout << " Read " << readVectorTime << "      " << readListTime << "      " << readSetTime << endl;
+    cout << " Read       " << readVectorTime << "       " << readListTime << "       " << readSetTime << endl;
     
     int sortVectorTime = mSortV(v);
     int sortListTime = mSortL(l);
     int sortSetTime = mSortS(s);
-    cout << " Read " << sortVectorTime << "      " << sortListTime << "      " << sortSetTime << endl;
+    cout << " Sort       " << sortVectorTime << "       " << sortListTime << "       " << sortSetTime << endl;
     
     string test = "HelloWorld";
     int insertVectorTime = mInsertV(v,test);
     int insertListTime = mInsertL(l,test);
     int insertSetTime = mInsertS(s,test);
-    cout << " Read " << insertVectorTime << "      " << insertListTime << "      " << insertSetTime << endl;
+    cout << " Insert     " << insertVectorTime << "       " << insertListTime << "       " << insertSetTime << endl;
     
-
+    int deleteVectorTime = mDeleteV(v);
+    int deleteListTime = mDeleteL(l);
+    int deleteSetTime = mDeleteS(s, test);
+    cout << " Delete     " << deleteVectorTime << "       " << deleteListTime << "       " << deleteSetTime << endl;
+    
 
 
     return 0;
