@@ -10,7 +10,18 @@ using namespace std;
 using namespace std::chrono;
 
 int main() {
-    
+    // read data 
+    vector<string> readdata( const string&  "codes.txt") {
+        vector<string> data;
+        ifstream fin( "codes.txt");
+        string line;
+        
+        while ( getline(file,line) ) {
+            data.push_back(line);
+        }
+
+        return data;
+    }
 
     return 0;
 }
