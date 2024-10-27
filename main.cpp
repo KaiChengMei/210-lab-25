@@ -46,6 +46,26 @@ int mReadS(set<string>& s, const vector<string>& data) {
     return duration.count();
 }
 
+int mSortV(vector<string>& v) {
+    auto start = high_resolution_clock::now();
+    sort(v.begin(), v.end());
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
+
+int mSortL(list<string>& l) {
+    auto start = high_resolution_clock::now();
+    l.sort();
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    return duration.count();
+}
+
+int mSortS(set<string>& s) {
+    return -1 ;
+}
+
 
 int main() {
     string fn = "codes.txt";
@@ -61,7 +81,12 @@ int main() {
     int readListTime = mReadL(l, data);
     int readSetTime = mReadS(s, data);
     cout << " Read " << readVectorTime << "      " << readListTime << "      " << readSetTime << endl;
+    int sortVectorTime = mSortV(v);
+    int sortListTime = mSortL(l);
+    int sortSetTime = mSortS(s);
+    cout << " Read " << sortVectorTime << "      " << sortListTime << "      " << sortSetTime << endl;
 
+    
 
 
 
