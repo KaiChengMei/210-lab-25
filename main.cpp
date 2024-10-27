@@ -9,7 +9,7 @@
 using namespace std;
 using namespace std::chrono;
 
-
+// function to read data from a file
 vector<string> readdata( const string&  fn) {
     vector<string> data;
     ifstream fin(fn);
@@ -22,6 +22,7 @@ vector<string> readdata( const string&  fn) {
     return data;
 }
 
+// Read part
 int mReadV(vector<string>& v, const vector<string>& data) {
     auto start = high_resolution_clock::now();
     v = data;
@@ -46,6 +47,7 @@ int mReadS(set<string>& s, const vector<string>& data) {
     return duration.count();
 }
 
+// Sort part
 int mSortV(vector<string>& v) {
     auto start = high_resolution_clock::now();
     sort(v.begin(), v.end());
@@ -65,6 +67,8 @@ int mSortL(list<string>& l) {
 int mSortS(set<string>& s) {
     return -1 ;
 }
+
+// Insert part
 
 int mInsertV(vector<string>& v, const string& value) {
     auto start = high_resolution_clock::now();
@@ -90,6 +94,8 @@ int mInsertS(set<string>& s, const string& value) {
     auto duration = duration_cast<milliseconds>(end - start);
     return duration.count();
 }
+
+// Delete part
 
 int mDeleteV(vector<string>& v) {
     auto start = high_resolution_clock::now();
@@ -127,7 +133,7 @@ int main() {
     vector<string> v;
     list<string> l;
     set<string> s;
-
+    // Output
     cout << " Operation  Vector  List    Set " << endl ;
 
     int readVectorTime = mReadV(v, data);
@@ -150,8 +156,6 @@ int main() {
     int deleteListTime = mDeleteL(l);
     int deleteSetTime = mDeleteS(s, test);
     cout << " Delete     " << deleteVectorTime << "       " << deleteListTime << "       " << deleteSetTime << endl;
-    
-
 
     return 0;
 }
